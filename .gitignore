@@ -1,5 +1,5 @@
 # Enviroment Stuff
-.env/
+.env
 
 # Modules
 node_modules
