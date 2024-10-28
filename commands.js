@@ -10,6 +10,11 @@ const TEST_COMMAND = {
     contexts: [0, 1, 2],
 };
 
-const ALL_COMMANDS = [TEST_COMMAND];
+const QUOTE_COMMAND = {
+    name: 'shun_quote',
+    description: 'Provides a random Shaun quote'
+}
+
+const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
