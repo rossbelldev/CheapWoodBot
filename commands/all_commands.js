@@ -17,8 +17,11 @@ const TEST_COMMAND = {
 };
 
 const QUOTE_COMMAND = {
-    name: 'shun_quote',
-    description: 'Provides a random Shaun quote'
+    name: 'shunquote',
+    description: 'Provides a random Shaun quote',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
 }
 
 const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND];
