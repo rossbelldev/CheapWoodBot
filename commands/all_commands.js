@@ -1,3 +1,9 @@
+/**
+ * This file contains all commands and their types. 
+ * This file can be run with the `nmp run register` as noted in `package.json`
+ * Running this will register the commands remotely. 
+ */
+
 import 'dotenv/config';
 import { InstallGlobalCommands } from '../utils.js';
 
