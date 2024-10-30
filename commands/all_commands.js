@@ -1,7 +1,6 @@
 /**
  * This file contains all commands and their types. 
- * This file can be run with the `nmp run register` as noted in `package.json`
- * Running this will register the commands remotely. 
+ * Running `nmp run register` (as noted in `package.json`) will register the commands remotely. 
  */
 
 import 'dotenv/config';
@@ -27,3 +26,8 @@ const QUOTE_COMMAND = {
 const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
+
+export const COMMANDS = Object.freeze({
+    TEST: TEST_COMMAND.name,
+    QUOTE: QUOTE_COMMAND.name
+});

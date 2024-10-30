@@ -5,6 +5,7 @@ import {
     InteractionResponseType,
     verifyKeyMiddleware,
 } from 'discord-interactions';
+import { handleCommand } from './commands/command_handler.js';
 
 // Creates express app and gets port/default  
 const app = express(); 
@@ -29,28 +30,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
      * Handle Slash command requests 
      */
     if (type === InteractionType.APPLICATION_COMMAND) {
-        const { name } = data;
-
-        // "test" command
-        if (name === 'test') {
-            // Send a message into the channel where the command was triggered
-            return res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: {
-                    content: `Hello, wood`,
-                },
-            });
-        } else if (name === 'shunquote') {
-            return res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: {
-                    content: `I don't find it funny, funnily enough`,
-                }
-            });
-        }
-
-        console.error(`Unknown command: ${name}`);
-        return res.status(400),json({ error: 'Unknown command' });
+        return handleCommand(data, res)
     }
 
     console.error(`Unknown interaction type`, type);
