@@ -40,6 +40,13 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     content: `Hello, wood`,
                 },
             });
+        } else if (name === 'shunquote') {
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    content: `I don't find it funny, funnily enough`,
+                }
+            });
         }
 
         console.error(`Unknown command: ${name}`);
