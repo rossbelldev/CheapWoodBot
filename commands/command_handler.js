@@ -20,6 +20,6 @@ export async function handleCommand(data, res) {
                 });
             default:
                 console.error(`Unknown command: ${name}`);
-                return res.status(400),json({ error: 'Unknown command' });
+                return res.status(400).json({ error: 'Unknown command' });
         }
 }
