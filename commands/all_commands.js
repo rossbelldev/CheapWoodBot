@@ -1,12 +1,6 @@
-/**
- * This file contains all commands and their types. 
- * Running `nmp run register` (as noted in `package.json`) will register the commands remotely. 
- */
-
 import 'dotenv/config';
 import { InstallGlobalCommands } from '../utils/discord_request.js';
 
-// Simple test command
 const TEST_COMMAND = {
     name: 'test',
     description: 'Basic command',
