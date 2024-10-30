@@ -4,7 +4,7 @@
  */
 
 import 'dotenv/config';
-import { InstallGlobalCommands } from '../utils.js';
+import { InstallGlobalCommands } from '../utils/discord_request.js';
 
 // Simple test command
 const TEST_COMMAND = {
