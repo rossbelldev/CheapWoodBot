@@ -1,6 +1,11 @@
 import 'dotenv/config';
 import { InstallGlobalCommands } from '../utils/discord_request.js';
 
+/** 
+ * Discord official docs for commands:
+ * https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
+ */  
+
 const TEST_COMMAND = {
     name: 'test',
     description: 'Basic command',
@@ -23,6 +28,14 @@ const DICE_COMMAND = {
     type: 1, 
     integration_types: [0, 1],
     contexts: [0, 1, 2],
+    options: [
+        {
+            name: 'dice_to_roll',
+            type: 3, // 3: String 
+            description: 'The name of the dice you wish to roll, (D2, D4, D6, D8, D10, D12, D20, D100)',
+            required: false
+        }
+    ]
 }
 
 const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND];
