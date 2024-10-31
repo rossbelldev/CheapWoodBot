@@ -5,6 +5,7 @@ This is a bot for cheap wood, but it may be expanded to other places.
 - [Bot Commands](#bot-commands)
     - [Test](#test)
     - [ShunQuote](#shunquote)
+    - [Dice](#dice)
 - [Development and Contributing](#development-and-contributing)
     - [Getting Setup](#getting-setup)
     - [Running the Bot](#running-the-bot)
@@ -18,6 +19,9 @@ Just a test to see that all is working
 
 ## ShunQuote
 Performing `/shunquote` will give you a random quote from Shun! Lots of fun to be had here!
+
+## Dice 
+Performing `/dice [dice_to_roll]` will allow you to enter any of `D2`, `D4`, `D6`, `D8`, `D10`, `D12`, `D20`, `D100` to get a result in that range. 
 
 # Development and Contributing 
 
