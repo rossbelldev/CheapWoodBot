@@ -9,9 +9,9 @@
         "node": ">=20.18.x"
     },
     "scripts": {
-        "start": "node app.js",
+        "start": "node app/app.js",
         "register": "node commands/all_commands.js",
-        "dev": "nodemon app.js"
+        "dev": "nodemon app/app.js"
     },
     "author": "rossbelldev",
     "license": "MIT",
