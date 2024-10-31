@@ -10,9 +10,7 @@ import {
     d100
  } from "../utils/dice_rolls.js";
 
-export function diceRollHandler(options) {
-    const [{ value : diceToRoll }] = options;
-
+export function diceRollHandler(diceToRoll) {
     switch (diceToRoll.toLowerCase()) {
         case DICE_ROLLS.D2:
             return d2();
