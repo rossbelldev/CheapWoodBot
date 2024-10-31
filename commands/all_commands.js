@@ -33,7 +33,7 @@ const DICE_COMMAND = {
             name: 'dice_to_roll',
             type: 3, // 3: String 
             description: 'The name of the dice you wish to roll, (D2, D4, D6, D8, D10, D12, D20, D100)',
-            required: false
+            required: true
         }
     ]
 }
