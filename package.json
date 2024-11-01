@@ -10,7 +10,7 @@
     },
     "scripts": {
         "start": "node app/app.js",
-        "register": "node commands/all_commands.js",
+        "register": "node app/commands/all_commands.js",
         "dev": "nodemon app/app.js"
     },
     "author": "rossbelldev",
