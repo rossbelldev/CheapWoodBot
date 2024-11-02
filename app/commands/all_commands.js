@@ -46,12 +46,29 @@ const DICE_COMMAND = {
     ]
 }
 
-const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND];
+const LOCALISED_TIME_COMMAND = {
+    name: 'localised_time',
+    description: 'Provides a discord-friendly (unix) localised time from a command to save you going and getting it from some external site.',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+    options: [
+        {
+            name: 'datetime',
+            type: 3, // String
+            description: 'Enter the datetime in this format: HH:mm dd/MM/yyyy',
+            required: false
+        }
+    ]
+}
+
+const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND, LOCALISED_TIME_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
 
 export const COMMANDS = Object.freeze({
     TEST: TEST_COMMAND.name,
     QUOTE: QUOTE_COMMAND.name,
-    DICE: DICE_COMMAND.name
+    DICE: DICE_COMMAND.name,
+    LOCALISED_TIME: LOCALISED_TIME_COMMAND.name
 });
