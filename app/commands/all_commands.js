@@ -20,6 +20,14 @@ const QUOTE_COMMAND = {
     type: 1,
     integration_types: [0, 1],
     contexts: [0, 1, 2],
+    options: [
+        {
+            name: 'question',
+            type: 3, // String 
+            description: 'The question you wish to ask the big man',
+            required: false
+        }
+    ]
 }
 
 const DICE_COMMAND = {

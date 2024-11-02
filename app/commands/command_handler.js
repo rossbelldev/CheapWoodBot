@@ -15,7 +15,8 @@ export async function handleCommand(data, res) {
                 data: { content: `Hello, wood` },
             });
         case COMMANDS.QUOTE:
-            message = getShunQuote();
+            const [{ value : question }] = options;
+            message = `You asked: ${question}, I answer: ${getShunQuote()}`;
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: { content: message }
