@@ -48,7 +48,7 @@ const DICE_COMMAND = {
 
 const LOCALISED_TIME_COMMAND = {
     name: 'localised_time',
-    description: 'Provides a discord-friendly (unix) localised time from a command to save you going and getting it from some external site.',
+    description: 'Provides a localised time',
     type: 1,
     integration_types: [0, 1],
     contexts: [0, 1, 2],
@@ -56,7 +56,7 @@ const LOCALISED_TIME_COMMAND = {
         {
             name: 'datetime',
             type: 3, // String
-            description: 'Enter the datetime in this format: HH:mm dd/MM/yyyy',
+            description: 'Enter the datetime in this format: `yyyy-MM-ddTHH:mm:ss`',
             required: false
         }
     ]
