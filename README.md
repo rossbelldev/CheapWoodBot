@@ -49,4 +49,4 @@ Open a branch outside of `main` and create a PR with the content you wish to mer
 
 After a PR is approved, the bot will be manually deployed on the RPi it's running on and you can see it working in any server it's added to. 
 
-Please ensure that a PR has a description, and appropriate video/screenshots of the additions (if applicable) to make reviewes easier. 
+Please ensure that a PR follows the template, to make reviewes easier. 
