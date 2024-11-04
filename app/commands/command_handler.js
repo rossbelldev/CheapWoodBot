@@ -26,11 +26,9 @@ export async function handleCommand(data, res) {
                 data: { content: handleDiceRoll(options) }
             });
         case COMMANDS.LOCALISED_TIME:
-            const [{ value : date }, { value : time }, { value : timezone }] = options;
-            message = getDiscordFormattedUnixTime(date, time, timezone);
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: { content: message }
+                data: { content: getDiscordFormattedUnixTime(options) }
             });
         default:
             console.error(`Unknown command: ${name}`);
