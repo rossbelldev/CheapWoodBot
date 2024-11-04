@@ -2,7 +2,7 @@ import { DiscordRequest } from './discord_request.js';
 import { EventEmitter } from 'events';
 
 
-export async function sendMessage() {
+export async function sweatsMessageHandler() {
     try {
         const channelId = process.env.CHANNEL_ID_CSWEATS;
         const messageId = await sendMessage(channelId);
