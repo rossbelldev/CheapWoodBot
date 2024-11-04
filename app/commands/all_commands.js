@@ -54,10 +54,22 @@ const LOCALISED_TIME_COMMAND = {
     contexts: [0, 1, 2],
     options: [
         {
-            name: 'datetime',
+            name: 'date',
             type: 3, // String
-            description: 'Enter the datetime in this format: `yyyy-MM-ddTHH:mm:ss`',
-            required: false
+            description: 'Enter the date in `yyyy-MM-dd` format',
+            required: true
+        },
+        {
+            name: 'time',
+            type: 3, // String
+            description: 'Enter time in `HH:mm` (24h) format',
+            required: true
+        },
+        {
+            name: 'timezone',
+            type: 3, // String
+            description: 'Enter the timezone in `<+/->HH:mm` format, e.g. `+01:00`',
+            required: true
         }
     ]
 }
