@@ -1,8 +1,9 @@
-export function getLocalisedTime(dateTime) {
-    return `<t:${getUnixTimeInSeconds(dateTime)}:F>`;
+export function getLocalisedTime(date, time, timezone) {
+    return `<t:${getUnixTimeInSeconds(date, time, timezone)}:F>`;
 }
 
-function getUnixTimeInSeconds(dateTime) { 
-    const date = new Date(dateTime);
-    return Math.floor(date.getTime() / 1000);
+function getUnixTimeInSeconds(date, time, timezone) { 
+    const dateTime = `${date}T${time}${timezone}`;
+    const outputDate = new Date(dateTime);
+    return Math.floor(outputDate.getTime() / 1000);
 }
