@@ -3,7 +3,7 @@ import {
     getUnixTimeInSeconds,
 } from "../utils/time_tools.js";
 
-export function getLocalisedTime(date, time, timezone) {
+export function getDiscordFormattedUnixTime(date, time, timezone) {
     let formattedDateTime;
     try {
         formattedDateTime = getFormattedDateTimeString(date, time, timezone);

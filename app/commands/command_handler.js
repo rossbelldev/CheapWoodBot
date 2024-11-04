@@ -2,7 +2,7 @@ import { InteractionResponseType } from "discord-interactions";
 import { COMMANDS } from "./all_commands.js";
 import { getShunQuote } from "./command_shunquote_handler.js";
 import { diceRollHandler } from "./command_dice_handler.js";
-import { getLocalisedTime } from "./command_localised_time.js";
+import { getDiscordFormattedUnixTime } from "./command_localised_time.js";
 
 export async function handleCommand(data, res) {
     const { name } = data;
@@ -31,7 +31,7 @@ export async function handleCommand(data, res) {
             });
         case COMMANDS.LOCALISED_TIME:
             const [{ value : date }, { value : time }, { value : timezone }] = options;
-            message = getLocalisedTime(date, time, timezone);
+            message = getDiscordFormattedUnixTime(date, time, timezone);
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: { content: message }
