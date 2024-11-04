@@ -7,6 +7,9 @@ export async function sweatsMessageHandler() {
         const channelId = process.env.CHANNEL_ID_CSWEATS;
         const messageId = await sendMessage(channelId);
         const intervalId = listenForReactions(channelId, messageId);
+        if (intervalId === null) {
+            return;
+        }
         setTimeout(() => clearInterval(intervalId), 1000 * 60 * 60 * 24); // 24 hours
     } catch (error) {
         console.error(error);
@@ -21,9 +24,23 @@ function listenForReactions(channelId, messageId) {
     let previousUsers = [];
     try {
         const reactioncheck = setInterval(async () => {
-            const response = await DiscordRequest(endpoint, {
+            var response;
+            try {
+            response = await DiscordRequest(endpoint, {
                 method: 'GET',
-            });
+                });
+            }catch (error) {
+                console.log(error);
+                const errorObj = JSON.parse(error.message);
+                if (errorObj.code === 10008) {
+                    clearInterval(reactioncheck);
+                    console.error('Message not found, stopping reaction check');
+                    return null;
+                } else {
+                    console.log(error);
+                    return reactioncheck;
+                }
+            }
             const users = await response.json();
             const userIds = users.map(user => user.id);
 
@@ -32,6 +49,7 @@ function listenForReactions(channelId, messageId) {
                 listener.emit('reaction', users);
             }
         }, 5000); // Check every 5 seconds
+        
 
         listener.on('reaction', async (users) => {
             users = users.filter(user => !user.bot);
