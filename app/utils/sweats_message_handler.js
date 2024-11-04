@@ -10,6 +10,7 @@ export async function sweatsMessageHandler() {
         setTimeout(() => clearInterval(intervalId), 1000 * 60 * 60 * 24); // 24 hours
     } catch (error) {
         console.error(error);
+        throw new Error('Error handling sweats message');
     }
 }
 
