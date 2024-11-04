@@ -1,7 +1,7 @@
 import { InteractionResponseType } from "discord-interactions";
 import { COMMANDS } from "./all_commands.js";
 import { handleShunQuote } from "./command_shunquote_handler.js";
-import { diceRollHandler as handleDiceRoll } from "./command_dice_handler.js";
+import { handleDiceRoll } from "./command_dice_handler.js";
 import { getDiscordFormattedUnixTime } from "./command_localised_time.js";
 
 export async function handleCommand(data, res) {
