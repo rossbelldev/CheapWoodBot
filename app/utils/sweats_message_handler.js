@@ -5,7 +5,8 @@ import { EventEmitter } from 'events';
 export async function sendMessage() {
     const channelId = process.env.CHANNEL_ID_CSWEATS;
     const messageId = await sendMessage(channelId);
-    listenForReactions(channelId, messageId);
+    const intervalId = listenForReactions(channelId, messageId);
+    //clearInterval(intervalId);
 }
 
 
@@ -14,7 +15,7 @@ function listenForReactions(channelId, messageId) {
     const listener = new EventEmitter();
     let previousUsers = [];
 
-    setInterval(async () => {
+    const reactioncheck = setInterval(async () => {
         const response = await DiscordRequest(endpoint, {
             method: 'GET',
         });
@@ -36,7 +37,7 @@ function listenForReactions(channelId, messageId) {
         }
         editMessage(channelId, messageId, users);
     });
-
+    return reactioncheck;
 }
 
 
