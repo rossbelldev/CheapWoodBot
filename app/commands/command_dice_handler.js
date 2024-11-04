@@ -10,8 +10,8 @@ import {
     d100
  } from "../utils/dice_rolls.js";
 
-export function diceRollHandler(diceToRoll) {
-    let message;
+export function diceRollHandler(options) {
+    const [{ value : diceToRoll }] = options;
     try {
         return `Rolling ${diceToRoll.toUpperCase()} ... It's: ` + rollDice(diceToRoll) + `!`;
     } catch (error) {
