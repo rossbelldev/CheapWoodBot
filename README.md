@@ -21,7 +21,7 @@ Just a test to see that all is working
 ## ShunQuote
 Performing `/shunquote` will give you a random quote from Shun! Lots of fun to be had here!
 
-Using the *optional* parameter `<question>` will ask the shunbot a question too. This currently just gives a random response to the question and doesn't need to make sense, but we're looking to improve it as time goes on. 
+Using the *optional* parameter `[question]` will ask the shunbot a question too. This currently just gives a random response to the question and doesn't need to make sense, but we're looking to improve it as time goes on. 
 
 ## Dice 
 Performing `/dice [dice_to_roll]` will allow you to enter any of `D2`, `D4`, `D6`, `D8`, `D10`, `D12`, `D20`, `D100` to get a result in that range. 
