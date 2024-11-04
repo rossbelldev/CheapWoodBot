@@ -23,7 +23,7 @@ export async function handleCommand(data, res) {
             });
         case COMMANDS.DICE:
             const [{ value : diceToRoll }] = options;
-            message = `Rolling ${diceToRoll}... It's: ` + diceRollHandler(diceToRoll);
+            message = diceRollHandler(diceToRoll);
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: { content: message }

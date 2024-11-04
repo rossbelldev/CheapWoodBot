@@ -11,6 +11,15 @@ import {
  } from "../utils/dice_rolls.js";
 
 export function diceRollHandler(diceToRoll) {
+    let message;
+    try {
+        return `Rolling ${diceToRoll.toUpperCase()} ... It's: ` + rollDice(diceToRoll) + `!`;
+    } catch (error) {
+        return error
+    }
+}
+
+function rollDice(diceToRoll) {
     switch (diceToRoll.toLowerCase()) {
         case DICE_ROLLS.D2:
             return d2();
@@ -29,6 +38,6 @@ export function diceRollHandler(diceToRoll) {
         case DICE_ROLLS.D100:
             return d100();
         default: 
-            return `Not valid dice option, please select D2, D4, D6, D8, D10, D12, D20 or D100`;
+            throw `Not valid dice option, please select D2, D4, D6, D8, D10, D12, D20 or D100`;
     }
 }
