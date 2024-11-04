@@ -7,6 +7,7 @@ export async function sweatsMessageHandler() {
         const channelId = process.env.CHANNEL_ID_CSWEATS;
         const messageId = await sendMessage(channelId);
         const intervalId = listenForReactions(channelId, messageId);
+        console.log(intervalId);
     } catch (error) {
         console.error(error);
     }
@@ -41,10 +42,12 @@ function listenForReactions(channelId, messageId) {
             }
             editMessage(channelId, messageId, users);
         });
+
+        return reactioncheck;
     } catch (error) {
         console.error(error);
     }
-    return reactioncheck;
+    return null;
 }
 
 
@@ -63,10 +66,11 @@ export async function sendMessage(channelId) {
         });
         const message = await response.json();
         addOwnReaction(channelId, message.id);
+        return message.id;
     } catch (error) {
         console.error(error);
     }
-    return message.id;
+    return null;
 }
 
 export async function editMessage(channelId, messageId, users) {
