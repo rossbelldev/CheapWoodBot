@@ -30,8 +30,8 @@ export async function handleCommand(data, res) {
                 data: { content: message }
             });
         case COMMANDS.LOCALISED_TIME:
-            const [{ value : dateTime }] = options;
-            message = getLocalisedTime(dateTime);
+            const [{ value : date }, { value : time }, { value : timezone }] = options;
+            message = getLocalisedTime(date, time, timezone);
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: { content: message }
