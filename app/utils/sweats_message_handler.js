@@ -1,6 +1,7 @@
 import { DiscordRequest } from './discord_request.js';
 import { EventEmitter } from 'events';
-
+const green=0x66FF33
+const red=0xff6633
 
 export async function sweatsMessageHandler() {
     try {
@@ -78,7 +79,7 @@ export async function sendMessage(channelId) {
                 embeds: [{
                     title: 'Sweats Today!',
                     description: 'React with 💧 to sign up for sweats today!\nCurrent signups: None',
-                    color: 0x00ff00,
+                    color: green,
                 }],
             }
         });
@@ -92,6 +93,10 @@ export async function sendMessage(channelId) {
 }
 
 export async function editMessage(channelId, messageId, users) {
+    var color = green;
+    if (users.length >= 5) {
+        color = red;
+    }
     try {
         const endpoint = `channels/${channelId}/messages/${messageId}`;
         const formattedUserList = users.map(user => `<@${user.id}>`).join('\n');
@@ -101,7 +106,7 @@ export async function editMessage(channelId, messageId, users) {
                 embeds: [{
                     title: 'Sweats Today!',
                     description: 'React with 💧 to sign up for sweats today! \nCurrent signups: \n' + formattedUserList,
-                    color: 0x00ff00,
+                    color: color,
                 }],
                 allowed_mentions: {
                     "parse": ["users"],
