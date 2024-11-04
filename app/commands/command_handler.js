@@ -2,6 +2,8 @@ import { InteractionResponseType } from "discord-interactions";
 import { COMMANDS } from "./all_commands.js";
 import { handleShunQuote } from "./command_shunquote_handler.js";
 import { diceRollHandler as handleDiceRoll } from "./command_dice_handler.js";
+import { handleSweats } from "./command_sweat_handler.js";
+
 
 export async function handleCommand(data, res) {
     const { name } = data;
@@ -23,6 +25,11 @@ export async function handleCommand(data, res) {
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: { content: handleDiceRoll(options) }
+            });
+        case COMMANDS.SWEAT:
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: { content: handleSweats() } ,
             });
         default:
             console.error(`Unknown command: ${name}`);
