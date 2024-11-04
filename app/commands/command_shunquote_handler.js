@@ -8,6 +8,19 @@ const quotes = [`Chinese?`, `Need a quipe`, `It was 2 for £2!`, `WHERE'S RITTLE
     `THAT'S MY BUMHOLE!`, `NO. SERIOUSLY.`, `THERE'S FUCK ALL WRONG WITH IT!`, `You're so cosy…. eh.`, `I'm heading doon tae the fish shop.`, `10 TUN O HADDOCK, 3 TUN O COD`,
     `You've twisted my arm`, `I'M CHUGGY BUT FUGGY`, `WOAH-OH`, `GOT A 9AM THE MORROW!`, `I only opened three crates`, `I'M TOUCHING CLOTH!`];
 
-export function getShunQuote() {
+export function handleShunQuote(options) {
+    try {
+        const [{ value : question }] = options;
+        return askShunQuestion(question);
+    } catch {
+        return getShunQuote();
+    }
+}
+
+function askShunQuestion(question) {
+    return `You asked: "${question}", I answer: ${getShunQuote()}`;
+} 
+
+function getShunQuote() {
     return quotes[Math.floor(Math.random() * quotes.length)];
 }

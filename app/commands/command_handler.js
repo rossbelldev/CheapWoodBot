@@ -1,7 +1,7 @@
 import { InteractionResponseType } from "discord-interactions";
 import { COMMANDS } from "./all_commands.js";
-import { getShunQuote } from "./command_shunquote_handler.js";
-import { diceRollHandler } from "./command_dice_handler.js";
+import { handleShunQuote } from "./command_shunquote_handler.js";
+import { diceRollHandler as handleDiceRoll } from "./command_dice_handler.js";
 import { getDiscordFormattedUnixTime } from "./command_localised_time.js";
 
 export async function handleCommand(data, res) {
@@ -16,18 +16,14 @@ export async function handleCommand(data, res) {
                 data: { content: `Hello, wood` },
             });
         case COMMANDS.QUOTE:
-            const [{ value : question }] = options;
-            message = `You asked: ${question}, I answer: ${getShunQuote()}`;
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: { content: message }
+                data: { content: handleShunQuote(options) }
             });
         case COMMANDS.DICE:
-            const [{ value : diceToRoll }] = options;
-            message = `Rolling ${diceToRoll}... It's: ` + diceRollHandler(diceToRoll);
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: { content: message }
+                data: { content: handleDiceRoll(options) }
             });
         case COMMANDS.LOCALISED_TIME:
             const [{ value : date }, { value : time }, { value : timezone }] = options;
