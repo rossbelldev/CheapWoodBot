@@ -8,7 +8,6 @@ export async function handleCommand(data, res) {
     const { name } = data;
     const { options } = data;
 
-    let message;
     switch(name) {
         case COMMANDS.TEST:
             return res.send({
