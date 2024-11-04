@@ -7,11 +7,10 @@ export async function sweatsMessageHandler() {
         const channelId = process.env.CHANNEL_ID_CSWEATS;
         const messageId = await sendMessage(channelId);
         const intervalId = listenForReactions(channelId, messageId);
-        console.log(intervalId);
+        setTimeout(() => clearInterval(intervalId), 1000 * 60 * 60 * 24); // 24 hours
     } catch (error) {
         console.error(error);
     }
-    //clearInterval(intervalId);
 }
 
 
