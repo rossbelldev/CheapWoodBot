@@ -46,12 +46,21 @@ const DICE_COMMAND = {
     ]
 }
 
-const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND];
+const SWEAT_COMMAND = {
+    name: 'sweats',
+    description: 'Ask for Ad-Hoc Sweats',
+    type: 1,
+    integration_types: [0],
+    contexts: [0]
+}
+
+const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND, SWEAT_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
 
 export const COMMANDS = Object.freeze({
     TEST: TEST_COMMAND.name,
     QUOTE: QUOTE_COMMAND.name,
-    DICE: DICE_COMMAND.name
+    DICE: DICE_COMMAND.name,
+    SWEAT: SWEAT_COMMAND.name,
 });
