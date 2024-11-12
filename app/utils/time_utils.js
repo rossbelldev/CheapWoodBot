@@ -1,0 +1,1 @@
+export const millisecondsFor24h = 86400000; // 24 * 60 * 60 * 1000

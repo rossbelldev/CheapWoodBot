@@ -2,9 +2,10 @@ import { DiscordRequest } from './discord_request.js';
 import { EventEmitter } from 'events';
 
 export function listenForReactions(channelId, messageId, emoji, updateFunction) {
+    if (parameterNull([channelId, messageId, emoji, updateFunction])) return;
     const endpoint = `channels/${channelId}/messages/${messageId}/reactions/` + encodeURIComponent(emoji);
     const listener = new EventEmitter();
-    let previousUsers = [];
+    let previousUserIDs = [];
     try {
         const intervalId = setInterval(async () => {
             var response;
@@ -13,8 +14,8 @@ export function listenForReactions(channelId, messageId, emoji, updateFunction) 
             const users = await response.json();
             const userIds = users.map(user => user.id);
 
-            if (JSON.stringify(userIds) !== JSON.stringify(previousUsers)) {
-                previousUsers = userIds;
+            if (JSON.stringify(userIds) !== JSON.stringify(previousUserIDs)) {
+                previousUserIDs = userIds;
                 listener.emit('reaction', users);
             }
         }, 5000); // Check every 5 seconds
@@ -38,7 +39,11 @@ function handleReactionUpdates(listener, channelId, messageId,emoji, callback) {
             addOwnReaction(channelId, messageId,emoji);
         }
         if (typeof callback === 'function') {
-            try {callback(messageId,channelId,users);} catch (error) {console.error(error);}
+            try {
+                callback(messageId,channelId,users);
+            } catch (error) {
+                console.error(error);
+            }
         }
     });
 }
@@ -64,9 +69,9 @@ async function fetchReactions(endpoint, intervalId) {
     return response;
 }
 
-export async function sendMessage(channelId, content = '', embeds = [], reactions = [], allowedMentions = {} ){
+export async function sendMessage(channelId, content, embeds, reactions, allowedMentions ){
     try {
-        if (content === null) content = '';
+        if(parameterNull([channelId,content,embeds,reactions,allowedMentions])) return;
         const endpoint = `channels/${channelId}/messages`;
         const response = await DiscordRequest(endpoint, {
             method: 'POST',
@@ -89,9 +94,9 @@ export async function sendMessage(channelId, content = '', embeds = [], reaction
     return null;
 }
 
-export async function editMessage(channelId, messageId, content='', embeds = [], allowedMentions = { }) {
+export async function editMessage(channelId, messageId, content, embeds, allowedMentions) {
     try {
-        if (content === null) content = '';
+        if (parameterNull([channelId,messageId,content,embeds,allowedMentions])) return;
         const endpoint = `channels/${channelId}/messages/${messageId}`;
         await DiscordRequest(endpoint, {
             method: 'PATCH',
@@ -107,7 +112,7 @@ export async function editMessage(channelId, messageId, content='', embeds = [],
 }
 
 export async function removeOwnReaction(channelId, messageId, emoji) {
-    if(emoji === null || messageId === null || channelId === null) return;
+    if(parameterNull([channelId,messageId,emoji])) return;
     const endpoint = `channels/${channelId}/messages/${messageId}/reactions/` + encodeURIComponent(emoji) + `/@me`;
     try {
         await DiscordRequest(endpoint, {
@@ -119,8 +124,8 @@ export async function removeOwnReaction(channelId, messageId, emoji) {
 }
 
 export async function addOwnReaction(channelId, messageId, emoji) {
+    if (parameterNull([channelId,messageId,emoji])) return;
     const endpoint = `channels/${channelId}/messages/${messageId}/reactions/` + encodeURIComponent(emoji) + `/@me`;
-    if (emoji === null || messageId === null || channelId === null) return;
     try {
         await DiscordRequest(endpoint, {
             method: 'PUT',
@@ -128,4 +133,14 @@ export async function addOwnReaction(channelId, messageId, emoji) {
     } catch (error) {
         console.error(error);
     }
+}
+
+function parameterNull(paramList) {
+    for (const param of paramList) {
+        if (param === null) {
+            return true;
+        }
+    }
+    return false;
+
 }

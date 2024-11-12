@@ -1,5 +1,6 @@
 import { sendMessage, editMessage, listenForReactions } from '../utils/message_utils.js';
 import { green, red } from '../utils/colors.js';
+import { millisecondsFor24h } from '../utils/time_utils.js';
 
 export function handleSweats() {
     try {
@@ -14,17 +15,16 @@ export function handleSweats() {
 async function sweatsMessageHandler() {
     try {
         const channelId = process.env.CHANNEL_ID_CSWEATS;
-        const embed = {
-            title: 'Sweats!',
-            description: 'React with 💧 to sign up for sweats today! \nCurrent signups: \n None',
-            color: green,
-        };
+        const embed = createEmbed([], green);
+        if (embed === null) {
+            return;
+        }
         const messageId = await sendMessage(channelId, '', [embed], ["💧"], {});
         const intervalId = listenForReactions(channelId, messageId, "💧", editMessageOnReaction);
         if (intervalId === null) {
             return;
         }
-        setTimeout(() => clearInterval(intervalId), 1000 * 60 * 60 * 24); // 24 hours
+        setTimeout(() => clearInterval(intervalId), millisecondsFor24h); // 24 hours
     } catch (error) {
         console.error(error);
         throw new Error('Error handling sweats message');
@@ -32,15 +32,27 @@ async function sweatsMessageHandler() {
 }
 
 async function editMessageOnReaction(messageId, channelId, users) {
-    var users = users.map(user => `<@${user.id}>`);
     var color = green;
     if (users.length >= 5) {
         color = red;
     }
-    const embed = {
+    const embed = createEmbed(users, color);
+    if (embed === null) {
+        return;
+    }
+    editMessage(channelId, messageId, '', [embed], { parse: ['users'] });
+}
+
+function createEmbed(users, color) {
+    try{
+        const userlist = users.length > 0 ? users.map(user => `<@${user.id}>`).join('\n') : 'None';
+    } catch (error) {
+        console.error('Error creating embed:', error);
+        return null;
+    }
+    return {
         title: 'Sweats!',
-        description: `React with 💧 to sign up for sweats today! \nCurrent signups: \n ${users.join('\n')}`,
+        description: `React with 💧 to sign up for sweats today! \nCurrent signups: \n ${userlist}`,
         color: color,
     };
-    editMessage(channelId, messageId, '', [embed], { parse: ['users'] });
 }
