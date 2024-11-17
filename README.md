@@ -32,7 +32,7 @@ Performing `/dice [dice_to_roll]` will allow you to enter any of `D2`, `D4`, `D6
 ## Localised Time
 Use `/localised_time [date] [time] [timezone]` and the bot will return a unix time that is localised in discord's formatting, so that users in different regions see the time that it will be for them. E.g. a user triggers this in GMT timezone, and sets a date time of `12:00 12/02/2025`, then a user in Germany would see `11:00 12/02/2025`, etc. 
 
-The format for `date` is `yyyy-MM-dd`, for time is `HH:mm` (24 hour) and for timezone is `<+/-> HH:mm` where the min input is `- 12:00` and the max input is `+ 12:00`. The bot has regex handling to facilitate all of these formats. 
+The format for `date` is `yyyy-MM-dd`, for time is `HH:mm` (24 hour) and for timezone is `<+/->HH:mm` where the min input is `-12:00` and the max input is `+12:00`. The bot has regex handling to facilitate all of these formats. The user is informed of these formats while using the command. 
 
 Examples of acceptable and unacceptable inputs, for further guidance: 
 
@@ -42,8 +42,8 @@ Examples of acceptable and unacceptable inputs, for further guidance:
 |           | `2025-10-11`  | `2024-13-08`      | There are not 13 months in a year, will be caught by regex                            | 
 | Time      | `14:00`       | `8:00 PM`         | Needs to be in 24h format, not AM/PM                                                  |
 |           | `08:00`       | `24:00`           | 24:00 isn't acceptable as there aren't 25 hours in a day. Will be caught by regex.    | 
-| Timezone  | `+ 12:00`     | `+ 13:00`         | The max is + 12:00                                                                    | 
-|           | `+ 00:00`     | `GMT`             | Timezone text is not accepted, just the time modifier.                                |      
+| Timezone  | `+12:00`      | `+13:00`          | The max is + 12:00                                                                    | 
+|           | `+00:00`      | `GMT`             | Timezone text is not accepted, just the time modifier.                                |      
 
 # Development and Contributing 
 
