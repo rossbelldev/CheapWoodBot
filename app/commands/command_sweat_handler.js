@@ -44,8 +44,9 @@ async function editMessageOnReaction(messageId, channelId, users) {
 }
 
 function createEmbed(users, color) {
+    let userlist = '';
     try{
-        const userlist = users.length > 0 ? users.map(user => `<@${user.id}>`).join('\n') : 'None';
+        userlist = users.length > 0 ? users.map(user => `<@${user.id}>`).join('\n') : 'None';
     } catch (error) {
         console.error('Error creating embed:', error);
         return null;
