@@ -2,7 +2,7 @@ import { InteractionResponseType } from "discord-interactions";
 import { COMMANDS } from "./all_commands.js";
 import { handleShunQuote } from "./command_shunquote_handler.js";
 import { diceRollHandler } from "./command_dice_handler.js";
-import { getDiscordFormattedUnixTime } from "./command_localised_time.js";
+import { handleLocalisedTimeCommand } from "./command_localised_time_handler.js";
 
 export async function handleCommand(data, res) {
     const { name } = data;
@@ -27,7 +27,7 @@ export async function handleCommand(data, res) {
         case COMMANDS.LOCALISED_TIME:
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: { content: getDiscordFormattedUnixTime(options) }
+                data: { content: handleLocalisedTimeCommand(options) }
             });
         default:
             console.error(`Unknown command: ${name}`);

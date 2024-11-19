@@ -1,4 +1,4 @@
-export function getFormattedDateTimeString(date, time, timezone) {
+function getFormattedDateTimeString(date, time, timezone) {
     validateDateTimeFormat(date, time, timezone);
     return `${date}T${time}${timezone}`;
 }
@@ -17,7 +17,12 @@ function validateDateTimeFormat(date, time, timezone) {
     }
 }
 
-export function getUnixTimeInSeconds(formattedDateTime) { 
+function getUnixTimeInSeconds(formattedDateTime) { 
     const date = new Date(formattedDateTime);
     return Math.floor(date.getTime() / 1000);
+}
+
+export function getDiscordFormattedUnixTime(date, time, timezone) {
+    const formattedDateTime = getFormattedDateTimeString(date, time, timezone);
+    return `<t:${getUnixTimeInSeconds(formattedDateTime)}:F>`;
 }
