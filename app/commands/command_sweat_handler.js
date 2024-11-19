@@ -1,6 +1,6 @@
 import { sendMessage, editMessage, listenForReactions } from '../utils/message_utils.js';
 import { green, red } from '../utils/colors.js';
-import { millisecondsFor24h } from '../utils/time_utils.js';
+import { millisecondsFor24h } from '../utils/time_tools.js';
 
 export function handleSweats() {
     try {
