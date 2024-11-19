@@ -54,7 +54,35 @@ const SWEAT_COMMAND = {
     contexts: [0]
 }
 
-const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND, SWEAT_COMMAND];
+const LOCALISED_TIME_COMMAND = {
+    name: 'localised_time',
+    description: 'Provides a localised time',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+    options: [
+        {
+            name: 'date',
+            type: 3, // String
+            description: 'Enter the date in `yyyy-MM-dd` format',
+            required: true
+        },
+        {
+            name: 'time',
+            type: 3, // String
+            description: 'Enter time in `HH:mm` (24h) format',
+            required: true
+        },
+        {
+            name: 'timezone',
+            type: 3, // String
+            description: 'Enter the timezone in `<+/->HH:mm` format, e.g. `+01:00`',
+            required: true
+        }
+    ]
+}
+
+const ALL_COMMANDS = [TEST_COMMAND, QUOTE_COMMAND, DICE_COMMAND, LOCALISED_TIME_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
 
@@ -63,4 +91,5 @@ export const COMMANDS = Object.freeze({
     QUOTE: QUOTE_COMMAND.name,
     DICE: DICE_COMMAND.name,
     SWEAT: SWEAT_COMMAND.name,
+    LOCALISED_TIME: LOCALISED_TIME_COMMAND.name
 });
