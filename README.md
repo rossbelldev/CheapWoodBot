@@ -37,7 +37,7 @@ The format for `date` is `yyyy-MM-dd`, for time is `HH:mm` (24 hour) and for tim
 Examples of acceptable and unacceptable inputs, for further guidance: 
 
 | Input     | Acceptable    | Not acceptable    | Reason                                                                                |
-|--         | --            | --                | --                                                                                    |   
+| --        | --            | --                | --                                                                                    |   
 | Date      | `2024-08-13`  | `13-08-2024`      | Wrong order, needs to be `yyyy-MM-dd`                                                 |
 |           | `2025-10-11`  | `2024-13-08`      | There are not 13 months in a year, will be caught by regex                            | 
 | Time      | `14:00`       | `8:00 PM`         | Needs to be in 24h format, not AM/PM                                                  |
