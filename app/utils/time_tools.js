@@ -6,7 +6,7 @@ function getFormattedDateTimeString(date, time, timezone) {
 function validateDateTimeFormat(date, time, timezone) {
     const dateFormatRegex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
     const timeFormatRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
-    const timezoneFormatRegex = /^[+-]((0[0-9]|1[0-1]):[0-5][0-9])|12:00$/;
+    const timezoneFormatRegex = /^[+-]((0[0-9]|1[0-1]):[0-5][0,5])|12:00$/;
 
     if (!dateFormatRegex.test(date)) {
         throw "Date in incorrect format";
