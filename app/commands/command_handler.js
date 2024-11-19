@@ -3,6 +3,8 @@ import { COMMANDS } from "./all_commands.js";
 import { handleShunQuote } from "./command_shunquote_handler.js";
 import { diceRollHandler } from "./command_dice_handler.js";
 import { handleLocalisedTimeCommand } from "./command_localised_time_handler.js";
+import { handleSweats } from "./command_sweat_handler.js";
+
 
 export async function handleCommand(data, res) {
     const { name } = data;
@@ -28,6 +30,11 @@ export async function handleCommand(data, res) {
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: { content: handleLocalisedTimeCommand(options) }
+            });
+        case COMMANDS.SWEATS:
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: { content: handleSweats() }
             });
         default:
             console.error(`Unknown command: ${name}`);

@@ -26,3 +26,5 @@ export function getDiscordFormattedUnixTime(date, time, timezone) {
     const formattedDateTime = getFormattedDateTimeString(date, time, timezone);
     return `<t:${getUnixTimeInSeconds(formattedDateTime)}:F>`;
 }
+
+export const millisecondsFor24h = 86400000; // 24 * 60 * 60 * 1000

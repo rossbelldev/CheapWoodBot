@@ -9,6 +9,7 @@ The document is split into the below secitons, one focusing on the commands and 
     - [ShunQuote](#shunquote)
     - [Dice](#dice)
     - [Localised Time](#localised-time)
+    - [Sweats Message](#sweats-message)
 - [Development and Contributing](#development-and-contributing)
     - [Getting Setup](#getting-setup)
     - [Running the Bot](#running-the-bot)
@@ -44,6 +45,10 @@ Examples of acceptable and unacceptable inputs, for further guidance:
 |           | `08:00`       | `24:00`           | 24:00 isn't acceptable as there aren't 25 hours in a day. Will be caught by regex.    | 
 | Timezone  | `+12:00`      | `+13:00`          | The max is + 12:00                                                                    | 
 |           | `+00:00`      | `GMT`             | Timezone text is not accepted, just the time modifier.                                |      
+
+## Sweats Message
+Performing `/sweats` will send a message to the designated channel asking users to react with 💧 to sign up for sweats. The bot will monitor reactions and update the message with the list of users who have signed up. If the number of users reaches 5 or more, the message color will change to red.
+
 
 # Development and Contributing 
 

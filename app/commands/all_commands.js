@@ -46,6 +46,14 @@ const DICE_COMMAND = {
     ]
 }
 
+const SWEAT_COMMAND = {
+    name: 'sweats',
+    description: 'Ask for Ad-Hoc Sweats',
+    type: 1,
+    integration_types: [0],
+    contexts: [0]
+}
+
 const LOCALISED_TIME_COMMAND = {
     name: 'localised_time',
     description: 'Provides a localised time',
@@ -82,5 +90,6 @@ export const COMMANDS = Object.freeze({
     TEST: TEST_COMMAND.name,
     QUOTE: QUOTE_COMMAND.name,
     DICE: DICE_COMMAND.name,
+    SWEAT: SWEAT_COMMAND.name,
     LOCALISED_TIME: LOCALISED_TIME_COMMAND.name
 });
