@@ -137,7 +137,9 @@ export async function addOwnReaction(channelId, messageId, emoji) {
 
 function parameterNull(paramList) {
     for (const param of paramList) {
-        if (param === null) {
+        // Check if the parameter is falsy
+        if (!param) {
+            console.error('Invalid parameter:', param);
             return true;
         }
     }
